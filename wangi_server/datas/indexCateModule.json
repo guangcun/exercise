@@ -4,7 +4,11 @@
         "imgUrl": "",
         "showIndex": 0,
         "superCategoryId": 0,
-        "bannerUrl": "",
+        "bannerUrlList": [
+            "https://yanxuan.nosdn.127.net/3c214b2455464e9c1001bb0d57b3258f.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+            "https://yanxuan.nosdn.127.net/3c6231c5e81f2272c7cf38e39175141e.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+            "https://yanxuan.nosdn.127.net/9add949b96c9d4b165541f6af67e1255.jpg?type=webp&imageView&quality=75&thumbnail=750x0"
+        ],
         "name": "居家生活",
         "id": 1005000,
         "type": 0,
@@ -446,7 +450,13 @@
         "imgUrl": "",
         "showIndex": 0,
         "superCategoryId": 0,
-        "bannerUrl": "",
+        "bannerUrlList": [
+            "https://yanxuan.nosdn.127.net/b771102e81d96c5b6913546a1879d0d4.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+            "https://yanxuan.nosdn.127.net/67eb24ad1aa361d90fc8440d82552c88.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+            "https://yanxuan.nosdn.127.net/326abff1d8ae5136748fbcd5de17691a.png?type=webp&imageView&quality=75&thumbnail=750x0",
+            "https://yanxuan.nosdn.127.net/007e986f9893b864cd175666bab7475d.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+            "https://yanxuan.nosdn.127.net/d735322c7eea7b4d2317b6a48d84646f.jpg?type=webp&imageView&quality=75&thumbnail=750x0"
+        ],
         "name": "服饰鞋包",
         "id": 1010000,
         "type": 0,
@@ -1173,7 +1183,12 @@
         "imgUrl": "",
         "showIndex": 0,
         "superCategoryId": 0,
-        "bannerUrl": "",
+        "bannerUrlList": [
+				"https://yanxuan.nosdn.127.net/352d8b2c296989d643bf8b4faa787c90.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+				"https://yanxuan.nosdn.127.net/676ba1c1a7830b1e2f270d154a8b56bd.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+				"https://yanxuan.nosdn.127.net/9b07f51a43d17bb83cf0c26648170c69.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+				"https://yanxuan.nosdn.127.net/bc75a4486891ee5e1336f5247ddfdd07.jpg?type=webp&imageView&quality=75&thumbnail=750x0"
+            ],
         "name": "美食酒水",
         "id": 1005002,
         "type": 0,
@@ -1549,8 +1564,12 @@
         "imgUrl": "",
         "showIndex": 0,
         "superCategoryId": 0,
-        "bannerUrl": "",
-        "name": "个护清洁",
+        "bannerUrlList": [
+				"https://yanxuan.nosdn.127.net/352d8b2c296989d643bf8b4faa787c90.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+				"https://yanxuan.nosdn.127.net/676ba1c1a7830b1e2f270d154a8b56bd.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+				"https://yanxuan.nosdn.127.net/9b07f51a43d17bb83cf0c26648170c69.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+				"https://yanxuan.nosdn.127.net/bc75a4486891ee5e1336f5247ddfdd07.jpg?type=webp&imageView&quality=75&thumbnail=750x0"
+			],"name": "个护清洁",
         "id": 1013001,
         "type": 0,
         "subCateList": [
@@ -1968,8 +1987,12 @@
         "imgUrl": "",
         "showIndex": 0,
         "superCategoryId": 0,
-        "bannerUrl": "",
-        "name": "母婴亲子",
+        "bannerUrlList": [
+				"https://yanxuan.nosdn.127.net/352d8b2c296989d643bf8b4faa787c90.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+				"https://yanxuan.nosdn.127.net/676ba1c1a7830b1e2f270d154a8b56bd.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+				"https://yanxuan.nosdn.127.net/9b07f51a43d17bb83cf0c26648170c69.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+				"https://yanxuan.nosdn.127.net/bc75a4486891ee5e1336f5247ddfdd07.jpg?type=webp&imageView&quality=75&thumbnail=750x0"
+			],"name": "母婴亲子",
         "id": 1011000,
         "type": 0,
         "subCateList": [
@@ -2450,7 +2473,12 @@
         "imgUrl": "",
         "showIndex": 0,
         "superCategoryId": 0,
-        "bannerUrl": "",
+         "bannerUrlList": [
+				"https://yanxuan.nosdn.127.net/352d8b2c296989d643bf8b4faa787c90.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+				"https://yanxuan.nosdn.127.net/676ba1c1a7830b1e2f270d154a8b56bd.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+				"https://yanxuan.nosdn.127.net/9b07f51a43d17bb83cf0c26648170c69.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+				"https://yanxuan.nosdn.127.net/bc75a4486891ee5e1336f5247ddfdd07.jpg?type=webp&imageView&quality=75&thumbnail=750x0"
+            ],
         "name": "运动旅行",
         "id": 109243029,
         "type": 0,
@@ -2905,7 +2933,12 @@
         "imgUrl": "",
         "showIndex": 0,
         "superCategoryId": 0,
-        "bannerUrl": "",
+         "bannerUrlList": [
+				"https://yanxuan.nosdn.127.net/352d8b2c296989d643bf8b4faa787c90.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+				"https://yanxuan.nosdn.127.net/676ba1c1a7830b1e2f270d154a8b56bd.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+				"https://yanxuan.nosdn.127.net/9b07f51a43d17bb83cf0c26648170c69.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+				"https://yanxuan.nosdn.127.net/bc75a4486891ee5e1336f5247ddfdd07.jpg?type=webp&imageView&quality=75&thumbnail=750x0"
+            ],
         "name": "数码家电",
         "id": 1043000,
         "type": 0,
@@ -3208,7 +3241,12 @@
         "imgUrl": "",
         "showIndex": 0,
         "superCategoryId": 0,
-        "bannerUrl": "",
+         "bannerUrlList": [
+				"https://yanxuan.nosdn.127.net/352d8b2c296989d643bf8b4faa787c90.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+				"https://yanxuan.nosdn.127.net/676ba1c1a7830b1e2f270d154a8b56bd.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+				"https://yanxuan.nosdn.127.net/9b07f51a43d17bb83cf0c26648170c69.jpg?type=webp&imageView&quality=75&thumbnail=750x0",
+				"https://yanxuan.nosdn.127.net/bc75a4486891ee5e1336f5247ddfdd07.jpg?type=webp&imageView&quality=75&thumbnail=750x0"
+            ],
         "name": "全球特色",
         "id": 1019000,
         "type": 0,

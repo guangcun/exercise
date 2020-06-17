@@ -31,7 +31,7 @@
     <div class="swiper-wrap" ref="swiper">
       <div class="list" ref="list">
         <Recommend v-if="navId===0"></Recommend>
-        <CartList v-else></CartList>
+        <CartList v-else :navId='navId'></CartList>
       </div>
     </div>
   </div>
@@ -120,12 +120,12 @@ export default {
     width 750px
     height 60px
     margin-bottom 30px
+    overflow hidden
     .nav
       display flex
       flex-direction row
       padding-left 30px
       width 750px
-      overflow hidden
       box-sizing border-box
       .navItem
         padding  20px

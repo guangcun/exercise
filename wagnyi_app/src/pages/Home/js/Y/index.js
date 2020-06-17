@@ -60,7 +60,7 @@ export const scorllY=function (swiperWrap,list){
         traslateY=0
         return 
       }
-      console.log(traslateY) 
+      //console.log(traslateY) 
      traslateY=css(list,"translateY")+(pointDisX)
      css(list,"translateY",traslateY)
   })
