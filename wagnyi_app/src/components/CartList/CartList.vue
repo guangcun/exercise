@@ -17,6 +17,16 @@
         <span class="title">口碑好物</span>
         <span class="subhead">口碑好物</span>
       </div>
+      <div class="productContent">
+        <div class="productItem" v-for="(item, index) in cartListData.subCateList" :key="item.id">
+          <img :src="item.wapBannerUrl" alt="">
+          <span class="title">{{item.frontDesc}}</span>
+          <div class="price">
+            <span class="new">￥{{item.priceNew}}</span>
+            <span class="old">￥{{item.priceOld}}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -90,4 +100,43 @@ export default {
       .subhead
         font-size 24px
         color #999
+    .productContent
+      display flex
+      flex-direction row
+      flex-wrap wrap
+      justify-content space-between
+      padding 0 30px
+      box-sizing border-box
+      .productItem
+        display flex
+        flex-direction column
+        border 1px solid #eee
+        margin-bottom 10px
+        img 
+          width 330px
+          height 330px
+          background #f4f4f4
+          border-radius 10px
+          margin-bottom 10px
+        .title
+          display block
+          font-size 32px
+          width 330px
+          display -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          overflow hidden
+          white-space pre-wrap
+        .price
+          font-size 26px
+          padding 0 0 10px 10px
+          box-sizing border-box
+          .new
+            color #DD1A21
+          .old
+            margin-left 10px
+            font-size 24px
+            color #999
+            text-decoration: line-through
+            
 </style>

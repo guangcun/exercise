@@ -158,6 +158,8 @@ export default {
         flex 1
         padding-bottom 20px
         .disCountImg
+          width 200px
+          height 200px
           background #eee
         .price
           margin-left 10px

@@ -22,8 +22,22 @@ router.get('/home',(ctx,next)=>{
     data:indexData
   }
 })
-
-
+//分类列表的导航的数据
+let cateNavData=require('./datas/cateNavDatas.json')
+router.get('/sortNav',(ctx,next)=>{
+  ctx.body={
+    code:200,
+    data:cateNavData
+  }
+})
+//分类列表的数据
+let cateData=require('./datas/cateLists.json')
+router.get('/sort',(ctx,next)=>{
+  ctx.body={
+    code:200,
+    data:cateData
+  }
+})
 
 
 

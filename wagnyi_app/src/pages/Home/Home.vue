@@ -118,15 +118,14 @@ export default {
       margin 0 20px
   .navContent
     width 750px
-    height 60px
-    margin-bottom 30px
+    height 80px
     overflow hidden
     .nav
       display flex
       flex-direction row
       padding-left 30px
-      width 750px
-      box-sizing border-box
+      width 750px    
+      height 70px
       .navItem
         padding  20px
         font-size 30px

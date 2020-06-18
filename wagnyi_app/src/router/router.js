@@ -5,7 +5,8 @@ import Cart from '../pages/Cart/Cart.vue'
 import Personal from '../pages/Personal/Personal.vue'
 import Sort from '../pages/Sort/Sort.vue'
 import Worthy from '../pages/Worthy/Worthy.vue'
-
+import Recommend from '../components/Recommend/Recommend.vue'
+import CartList from '../components/CartList/CartList.vue'
 
 //声明使用 VueRouter
 Vue.use(VueRouter)
@@ -17,7 +18,7 @@ export default new VueRouter({
   routes: [
     {
       path:'/home',
-      component:Home
+      component:Home,
     },
     {
       path:'/cart',
