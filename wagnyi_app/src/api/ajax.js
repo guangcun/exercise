@@ -2,7 +2,6 @@ import axios from 'axios';
 //对 axios的二次封装
 
 const ajax=axios.create({
-  baseURL:'/api',
   timeout:20000
 })
 // 添加请求拦截器
