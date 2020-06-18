@@ -11,9 +11,14 @@
     <div class="content">
       <!-- 左导航 -->
       <div class="leftNav">
-        <van-sidebar v-model="activeKey">
-          <van-sidebar-item :title="item.name" v-for="(item, index) in sortDataNav.categoryL1List" :key="index" />
+        <van-sidebar v-model="activeKey" >
+          <van-sidebar-item :title="item.name" v-for="(item, index) in sortDataNav.categoryL1List" :key="index" 
+          @click="onChange(index,item.id)"
+          />
         </van-sidebar>
+      </div>
+      <div class="rightNav">
+        <SortList :sortListId='sortListId'></SortList>
       </div>
     </div>
   </div>
@@ -25,28 +30,39 @@ import { Sidebar, SidebarItem } from 'vant';
 Vue.use(Sidebar);
 Vue.use(SidebarItem);
 import {mapState,mapActions} from 'vuex'
+import SortList from '../../components/SortList/SortList';
 export default {
   name: 'Sort',
    data() {
     return {
       activeKey: 0,
+      sortListId:11,
     };
+  },
+  components:{
+    SortList,
   },
   mounted() {
     this.getchangeSortDataNav()
     this.getchangeSortData()
+    this.getchangeSortDataOff()
   },
   methods: {
     ...mapActions({
       getchangeSortDataNav:'getchangeSortDataNav',
-      getchangeSortData:'getchangeSortData'
-    })
+      getchangeSortData:'getchangeSortData',
+      getchangeSortDataOff:'getchangeSortDataOff'
+    }),
+    onChange(index,id){
+      this.activeKey=index
+      this.sortListId=id
+    }
   },
   computed: {
     ...mapState({
       sortDataNav:state=>state.sortData.sortDataNav
     })
-  },
+  }
 }
 </script>
 
@@ -68,6 +84,8 @@ export default {
         font-size 30px
   .content
     border-top 2px solid #eee
+    height calc(100vh - 102px)
+    display flex
     .leftNav
       width 160px
       border-right 2px solid #eee

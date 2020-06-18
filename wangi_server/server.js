@@ -32,13 +32,20 @@ router.get('/sortNav',(ctx,next)=>{
 })
 //分类列表的数据
 let cateData=require('./datas/cateLists.json')
-router.get('/sort',(ctx,next)=>{
+let cateListFoue=cateData.splice(0,4)
+router.get('/sortFour',(ctx,next)=>{
+  ctx.body={
+    code:200,
+    data:cateListFoue
+  }
+})
+
+router.get('/sortOff',(ctx,next)=>{
   ctx.body={
     code:200,
     data:cateData
   }
 })
-
 
 
 

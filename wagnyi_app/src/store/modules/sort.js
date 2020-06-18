@@ -1,8 +1,9 @@
-import {CHANGESORTDATANAV,CHANGESORTDATA} from '../mutations_type.js';
-import {reqSortDataNav,reqSortData} from '../../api/index.js';
+import {CHANGESORTDATANAV,CHANGESORTDATA,CHANGESORTDATAOFF} from '../mutations_type.js';
+import {reqSortDataNav,reqSortData,reqSortDataOff} from '../../api/index.js';
 const state={
   sortDataNav:{},
-  sortData:{}
+  sortData:{},
+  sortDataOff:{}
 }
 const mutations={
   [CHANGESORTDATANAV](state,sortDataNav){
@@ -10,6 +11,9 @@ const mutations={
   },
   [CHANGESORTDATA](state,sortData){
     state.sortData=sortData
+  },
+  [CHANGESORTDATAOFF](state,sortDataOff){
+    state.sortDataOff=sortDataOff
   },
 }
 const actions={
@@ -21,6 +25,10 @@ const actions={
     let result=await reqSortData();
     result.code===200 & commit(CHANGESORTDATA,result.data)
   },
+  async getchangeSortDataOff({commit}){
+    let result=await reqSortDataOff()
+    result.code===200 & commit(CHANGESORTDATAOFF,result.data)
+  }
 }
 const getters={
 

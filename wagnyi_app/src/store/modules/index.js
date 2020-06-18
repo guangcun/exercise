@@ -2,7 +2,8 @@ import {reqIndexDataNav,reqIndexData} from '../../api';
 import {CHANGEINDEXDATANAV,CHANGEINDEXDATA} from '../mutations_type.js';
 const state={
     indexDataNav:{}, //主页导航数据
-    indexData:{}  //主页数据
+    indexData:{},  //主页数据
+    
 }
 const mutations={
   //修改主页导航
