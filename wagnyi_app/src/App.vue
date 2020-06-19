@@ -17,6 +17,7 @@ export default {
 
 <style lang='stylus'>
 @import '../static/font/iconfont.css'
+@import url("../static/font/iconfont.styl");
 html,body
   margin 0
   padding 0

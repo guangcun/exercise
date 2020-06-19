@@ -12,3 +12,5 @@ export const reqSortData=()=>ajax.get('/api/sortFour')
 export const reqSortDataOff=()=>ajax.get('/api/sortOff')
 //请求值得买导航数据
 export const reqWorthyNav=()=>ajax.get('/host/topic/v1/know/navWap.json')
+//请求登录
+export const reqLogin=(userName,password)=>ajax.post(`/api/login?username=${userName},&password=${password}`)

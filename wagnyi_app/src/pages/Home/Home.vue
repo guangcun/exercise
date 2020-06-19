@@ -7,11 +7,11 @@
         <i class="iconfont icon-search"></i>
         <span class="placeholder">搜索商品</span>
       </div>
-      <div class="btn">登录</div>
+      <div class="btn" @click="toLogin">{{userInfo.userName?userInfo.userName:'登录'}}</div>
     </div>
     <!-- 导航 -->
     <div class="navContent" ref="navContent">
-      <div class="nav" ref="nav">
+      <div class="nav">
         <div class="navItem" 
           :class="{active:navIndex===0}"
           @click="changeIndex(0,0)"
@@ -39,10 +39,9 @@
 
 <script>
 import {mapState,mapActions} from 'vuex';
+import BScroll from 'better-scroll'
 import Recommend from '../../components/Recommend/Recommend';
 import CartList from '../../components/CartList/CartList';
-import {scorllY} from './js/Y/index';
-import {scorllX} from './js/X/index';
 export default {
   name: 'Home',
   components:{
@@ -52,14 +51,28 @@ export default {
   data() {
     return {
       navIndex:0,
-      navId:0
+      navId:0,
+      userInfo:{
+
+      }
     }
   },
   mounted() {
     this.getIndexDataNavAction();
     this.getIndexDataAction()
-    scorllY(this.$refs.swiper,this.$refs.list)
-    scorllX(this.$refs.navContent,this.$refs.nav)
+    let wrapper = this.$refs.navContent
+    scroll = new BScroll(wrapper, {
+        　scrollX: true,
+          click: true
+    })
+    let swiper=this.$refs.swiper
+    scrollY=new BScroll(swiper,{
+      　scrollY:true
+    })
+    let userInfo=localStorage.getItem('userInfo')
+    if (userInfo) {
+      this.userInfo=JSON.parse(userInfo)
+    }
   },
   methods: {
     ...mapActions({
@@ -69,6 +82,11 @@ export default {
     changeIndex(navIndex,navId){
       this.navIndex=navIndex
       this.navId=navId
+    },
+    toLogin(){
+      if (!this.userInfo.userName) {
+        this.$router.push('/login')
+      }
     }
   },
   computed: {
@@ -121,10 +139,9 @@ export default {
     height 80px
     overflow hidden
     .nav
-      display flex
+      display inline-flex
       flex-direction row
       padding-left 30px
-      width 750px    
       height 70px
       .navItem
         padding  20px

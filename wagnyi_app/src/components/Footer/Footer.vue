@@ -5,7 +5,7 @@
         <p class="title" >首页</p>
       </router-link>
        <router-link class='nav-tabs'  active-class='active' to="/sort">
-        <i class='iconfont icon-sort'></i>
+        <i class='iconfont icon-fenlei'></i>
         <p class="title" >分类</p>
       </router-link>
        <router-link class='nav-tabs'  active-class='active' to="/worthy">

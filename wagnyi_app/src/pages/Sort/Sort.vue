@@ -10,14 +10,17 @@
     
     <div class="content">
       <!-- 左导航 -->
-      <div class="leftNav">
-        <van-sidebar v-model="activeKey" >
-          <van-sidebar-item :title="item.name" v-for="(item, index) in sortDataNav.categoryL1List" :key="index" 
-          @click="onChange(index,item.id)"
-          />
-        </van-sidebar>
-      </div>
-      <div class="rightNav">
+        <div class="leftNav" ref="leftNavContent">
+          <div>
+            <van-sidebar v-model="activeKey" >
+            <van-sidebar-item :title="item.name" v-for="(item, index) in sortDataNav.categoryL1List" :key="index" 
+            @click="onChange(index,item.id)"
+            />
+          </van-sidebar>
+          </div>
+        </div>
+   
+      <div class="rightNav" ref="rightNav">
         <SortList :sortListId='sortListId'></SortList>
       </div>
     </div>
@@ -27,6 +30,7 @@
 <script>
 import Vue from 'vue';
 import { Sidebar, SidebarItem } from 'vant';
+import bScroll from 'better-scroll'
 Vue.use(Sidebar);
 Vue.use(SidebarItem);
 import {mapState,mapActions} from 'vuex'
@@ -46,6 +50,15 @@ export default {
     this.getchangeSortDataNav()
     this.getchangeSortData()
     this.getchangeSortDataOff()
+     let scorllNav=new bScroll(this.$refs.leftNavContent,{
+          scrollY:true,
+          click:true
+      })
+      console.log(scorllNav);
+      let rightNav=new bScroll(this.$refs.rightNav,{
+          scrollY:true,
+          click:true
+      })
   },
   methods: {
     ...mapActions({
@@ -100,4 +113,6 @@ export default {
           &::before
             height 50px
             top 56%
+    .rightNav
+      overflow hidden
 </style>
