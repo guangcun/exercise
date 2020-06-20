@@ -48,8 +48,6 @@ let loginData={
 router.post('/login',(ctx,next)=>{
   // console.log(ctx.query);
   const {username,password}=ctx.query
-  console.log(ctx.query);
-  console.log(ctx.params);
   
   if (!username || !password) {
     ctx.body={

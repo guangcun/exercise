@@ -18,7 +18,7 @@
         <span class="subhead">口碑好物</span>
       </div>
       <div class="productContent">
-        <div class="productItem" v-for="(item, index) in cartListData.subCateList" :key="item.id">
+        <div class="productItem" @click="toDetail(item)" v-for="(item, index) in cartListData.subCateList" :key="item.id">
           <img :src="item.wapBannerUrl" alt="">
           <span class="title">{{item.frontDesc}}</span>
           <div class="price">
@@ -48,6 +48,11 @@ export default {
   methods: {
     onChange(index){
       this.banIndex=index
+    },
+    toDetail(data){
+      let DetailData=data
+      // console.log(data);
+      this.$router.push({path:'/detail',query:{data:DetailData}})
     }
   },
   computed: {
@@ -93,6 +98,9 @@ export default {
       box-sizing border-box
       height 120px
       text-align center
+      display flex
+      background #fff
+      flex-direction column
       .title
         font-size 34px
         display block

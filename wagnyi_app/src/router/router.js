@@ -5,8 +5,8 @@ import Personal from '../pages/Personal/Personal.vue'
 import Sort from '../pages/Sort/Sort.vue'
 import Worthy from '../pages/Worthy/Worthy.vue'
 import Login from '../pages/Login/Login.vue';
-import phoneLogin from '../components/phoneLogin/phoneLogin.vue'
-
+import Detail from '../pages/Detail//Detail.vue'
+import Search from '../pages/Search/Search.vue';
 
 export default  [
     {
@@ -32,15 +32,15 @@ export default  [
     {
       path:'/login',
       component:Login,
-      children:[
-        {
-          path:'/phone',
-          component:phoneLogin,
-          name:'phone'
-        }
-      ]
     },
-   ,
+    {
+      path:'/detail',
+      component:Detail
+    },
+    {
+      path:'/search',
+      component:Search
+    },
     {
       path:'/',
       redirect: '/home'

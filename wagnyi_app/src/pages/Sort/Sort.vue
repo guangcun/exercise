@@ -1,7 +1,7 @@
 <template>
   <div class="sortContaiter">
     <!-- 头部 -->
-    <div class="searchHeader">
+    <div class="searchHeader"  @click="toSearch">
 			<div class="search">
         <i class="iconfont icon-search"></i>
 				搜索商品, 共33331款好物
@@ -21,7 +21,9 @@
         </div>
    
       <div class="rightNav" ref="rightNav">
-        <SortList :sortListId='sortListId'></SortList>
+        <div class="list" >
+          <SortList :sortListId='sortListId'></SortList>
+        </div>
       </div>
     </div>
   </div>
@@ -54,7 +56,6 @@ export default {
           scrollY:true,
           click:true
       })
-      console.log(scorllNav);
       let rightNav=new bScroll(this.$refs.rightNav,{
           scrollY:true,
           click:true
@@ -69,6 +70,9 @@ export default {
     onChange(index,id){
       this.activeKey=index
       this.sortListId=id
+    },
+    toSearch(){
+      this.$router.push('/search')
     }
   },
   computed: {
@@ -97,9 +101,11 @@ export default {
         font-size 30px
   .content
     border-top 2px solid #eee
-    height calc(100vh - 102px)
+    height calc(100vh - 302px)
+    overflow hidden
     display flex
     .leftNav
+      display inline-block
       width 160px
       border-right 2px solid #eee
       .van-sidebar 
@@ -114,5 +120,8 @@ export default {
             height 50px
             top 56%
     .rightNav
-      overflow hidden
+      height 850px
+      .list
+        display inline-block
+
 </style>

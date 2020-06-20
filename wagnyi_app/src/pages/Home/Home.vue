@@ -3,7 +3,7 @@
     <!-- 头部 -->
     <div class="header">
       <img class="logo" src="./images/logo.png" alt="">
-      <div class="searchInput">
+      <div class="searchInput" @click="toSearch">
         <i class="iconfont icon-search"></i>
         <span class="placeholder">搜索商品</span>
       </div>
@@ -29,7 +29,7 @@
     </div>
     <!-- 内容区 -->
     <div class="swiper-wrap" ref="swiper">
-      <div class="list" ref="list">
+      <div class="list" >
         <Recommend v-if="navId===0"></Recommend>
         <CartList v-else :navId='navId'></CartList>
       </div>
@@ -67,7 +67,8 @@ export default {
     })
     let swiper=this.$refs.swiper
     scrollY=new BScroll(swiper,{
-      　scrollY:true
+      　scrollY:true,
+        click:true
     })
     let userInfo=localStorage.getItem('userInfo')
     if (userInfo) {
@@ -87,6 +88,9 @@ export default {
       if (!this.userInfo.userName) {
         this.$router.push('/login')
       }
+    },
+    toSearch(){
+      this.$router.push('/search')
     }
   },
   computed: {

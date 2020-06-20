@@ -5,7 +5,9 @@
     </router-link>
     <span class="title">{{title}}</span>
     <div class="right">
-      <i class="iconfont icon-search"></i>
+      <router-link to='/search'>
+        <i class="iconfont icon-search"></i>
+      </router-link>
       <router-link to="/cart">
         <i class="iconfont icon-cart"></i>
       </router-link>

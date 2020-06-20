@@ -2,10 +2,11 @@ import axios from 'axios';
 //对 axios的二次封装
 
 const ajax=axios.create({
-  timeout:20000
+  timeout:20000,
 })
 // 添加请求拦截器
 ajax.interceptors.request.use((config)=>{
+
   return config
 })
 //添加响应拦截器

@@ -16,32 +16,40 @@
     </template>
     <template v-else>
       <!-- 登录 -->
-      <template v-if="true">
+      <template v-if="cartList.length>0">
         <!-- 登录后购物车 -->
-        <div class="cartList">
-          <div class="cartItem">
-            <span class="iconfont icon-xuanzhong" ></span>
+        <div class="cartList" v-for="(item, index) in cartList" :key="index">
+          <div class="cartItem" >
+            <span 
+              class="iconfont icon-xuanzhong" 
+              :class="{selected:item.selected}"
+              @click="handelSel((!item.selected),index)"
+            ></span>
             <div class="shopItem">
-              <img src="" alt="" class="shopImg">
+              <img :src="item.wapBannerUrl" alt="" class="shopImg">
               <div class="shopInfo">
-                <span class="title">文字</span>
-                <span class="price">$</span>
+                <span class="title">{{item.name}}</span>
+                <span class="price">￥{{item.priceNew}}</span>
               </div>
             </div>
             <!-- 数量 -->
             <div class="countCtronal">
-              <span class="add" >+</span>
-              <span class="count">数量</span>
-              <span class="del" >-</span>
+              <span class="add" @click="handelCount(true,index)">+</span>
+              <span class="count">{{item.count}}</span>
+              <span class="del" @click="handelCount(false,index)">-</span>
             </div>
           </div>
         </div>
         <!-- 底部下单 -->
         <div class="cartFooter">
-          <span class="iconfont icon-xuanzhong" ></span>
-          <span class="allSelected">已选</span>
+          <span 
+            class="iconfont icon-xuanzhong"
+            :class="{selected:allSelected}"
+            @click="handelAll(!allSelected)"
+          ></span>
+          <span class="allSelected">已选 {{totalCount}}</span>
           <div class="right">
-            <span class="totalPrice">合计:$1214</span>
+            <span class="totalPrice">合计: ￥ {{totlaPrice}}</span>
             <span class="preOrder">下单</span>
           </div>
         </div>
@@ -56,7 +64,9 @@
     </template>
   </div>
 </template>
-<script type="text/ecmascript-6">
+<script>
+  import {mapState,mapMutations,mapGetters} from 'vuex';
+
   export default {
     name:'Cart',
     data(){
@@ -71,10 +81,30 @@
       }
     },
     methods:{
+      ...mapMutations({
+         changecount:'changecount',
+         changeSelected:'changeSelected',
+         changeAllSeleted:'changeAllSeleted'
+      }),
       toLogin(){
         this.$router.push('/login')
+      },
+      handelCount(isAdd,index){
+        this.changecount({isAdd,index})
+      },
+      handelSel(selected,index){
+        this.changeSelected({selected,index})
+      },
+      handelAll(allSelected){
+        this.changeAllSeleted(allSelected)
       }
-    }
+    },
+    computed: {
+      ...mapState({
+        cartList:state=>state.cart.cartList
+      }),
+      ...mapGetters(['allSelected','totalCount','totlaPrice'])
+    },
   }
 </script>
 
@@ -130,8 +160,8 @@
         line-height 170px
         margin 0 40px
         color #999
-       /*  &.selected
-						color: #BB2C08 */
+        &.selected
+          color #BB2C08
       .shopItem
         display flex
         .shopImg
@@ -173,11 +203,11 @@
     background #fff
     font-size 28px
     .iconfont
-      font-size 4px
+      font-size 40px
       margin 0 20px
-      color: #999
-      /* &.selected
-        color: #BB2C08 */
+      color #999
+      &.selected
+        color #BB2C08 
     .right 
       height 90px
       position absolute
