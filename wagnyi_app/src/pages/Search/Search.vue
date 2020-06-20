@@ -64,24 +64,18 @@ export default {
       }
     },
     onSearch(val) {
-    //    var timer = null;
-    //   var delay = 200;
-    //   return ()=>{
-    //     // 清除上一次延时器
-    //     clearTimeout(timer)
-    //     timer = setTimeout(()=>{
-    //         this.getSearch(val)     
-    //     }, delay);
-    // }
-      // let timer;
-      // if (timer) {
-      //   clearTimeout(timer)
-      //   }
-      //    timer=null
-      //     timer=setTimeout(() => {
-            // this.getSearch(val)
-      //     }, 2000);
+      let timer   
+      let shiw=true
+      clearTimeout(timer)
+      if (!shiw) {
+        return
+      }
+      timer=setTimeout(() => {
+        shiw=false
         this.getSearch(val)
+        console.log(1111);
+      }, 2000);
+        //this.getSearch(val)
      
     },
     onCancel() {
