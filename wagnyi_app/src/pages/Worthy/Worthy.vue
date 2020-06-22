@@ -9,7 +9,7 @@
           <div class="title">严选好物&nbsp;用心生活</div>
         </div>
       </div>
-      <div class="worthyBot">
+      <div class="worthyBot" ref="worthyBot">
         <div class="worthyContent">
           <div class="wortItem" v-for="(item, index) in worthyData.navList" :key="index">
             <img :src="item.picUrl" alt="">
@@ -17,6 +17,12 @@
             <span class="text">{{item.viceTitle}}</span>
           </div>
         </div>
+        <div class="dot" >  
+            <span 
+              v-for="(item, index) in worthyLen" :key="index"
+              :class='{active:index===WorIndex}'
+            ></span>
+          </div>
       </div>
     </div>
     <!-- 瀑布流 -->
@@ -26,17 +32,35 @@
 
 <script>
 import Header from '../../components/Header/Header';
+import BScroll from 'better-scroll'
 import {reqWorthyNav} from '../../api/index';
 export default {
   name: 'Worthy',
   data() {
     return {
       title:'值得买',
+      WorIndex:0,//小圆点下标
       worthyData:{}
     }
   },
   mounted() {
     this.getWorthyNav()
+    let scrollWor=new BScroll(this.$refs.worthyBot,{
+        scrollX:true,
+        scrollY: false,
+        snap: {  // 滑动切换的一些配置
+          speed: 800,  // 滑动切换的速度
+          easing: {  // 滑动切换的动画效果
+            style: 'ease-in'
+          },
+        threshold: 0.5,  // 滑动切换到超过一半时切换到下一屏
+        stepX: 177,  // 横向切换距离为轮播图宽度   
+      }
+    })
+    scrollWor.on('scrollEnd',({x,y})=>{
+      let index=Math.abs(x/177)
+      this.WorIndex=Math.ceil(index)
+    })
   },
   methods: {
     async getWorthyNav(){
@@ -45,6 +69,12 @@ export default {
       if (result.code==="200") {
         this.worthyData=result.data
       }
+    },
+  },
+  computed: {
+    //计算长度
+    worthyLen(){
+      return  this.worthyData.navList && Math.ceil(this.worthyData.navList.length/2)-3
     }
   },
   components:{
@@ -95,19 +125,22 @@ export default {
       z-index 9
       border-radius 20px
       overflow hidden
+      position relative
       .worthyContent
         display flex
+        flex-direction column
         flex-wrap wrap
+        align-content: baseline;
         padding 40px 0
+        width 1416px
         height 520px
-        overflow hidden
         box-sizing border-box
         .wortItem
-          width 25%
+          width 177px
           display flex
           flex-direction column
           align-items center
-          height 240px
+          height 220px
           img
             width 120px
             height 120px
@@ -119,4 +152,19 @@ export default {
           .text
             color #999
             font-size 24px
+      .dot
+        width 710px
+        height 5px
+        position absolute
+        left 0
+        bottom 40px
+        text-align center
+        span 
+          display inline-block
+          width 30px
+          height 5px
+          background #eee
+          &.active
+            background red
+
 </style>

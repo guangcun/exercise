@@ -31,6 +31,7 @@
 <script>
 import Vue from 'vue';
 import { Search,Form,Cell, CellGroup } from 'vant';
+import debounce from 'lodash/debounce';
 import {reqSearchInit,reqSearch} from '../../api/index';
 Vue.use(Cell);
 Vue.use(CellGroup);
@@ -62,19 +63,26 @@ export default {
       if (result.code==='200') {
         this.searchData=result.data;
       }
+      
     },
+    //防抖
+    getdebounce:debounce(function (keyword) {
+        this.getSearch(keyword)
+    },1000),
     onSearch(val) {
-      let timer   
-      let shiw=true
-      clearTimeout(timer)
-      if (!shiw) {
-        return
-      }
-      timer=setTimeout(() => {
-        shiw=false
-        this.getSearch(val)
-        console.log(1111);
-      }, 2000);
+      this.getdebounce(val)
+      //debounce(this.getSearch(val),1000)
+      // let timer   
+      // let shiw=true
+      // clearTimeout(timer)
+      // if (!shiw) {
+      //   return
+      // }
+      // timer=setTimeout(() => {
+      //   shiw=false
+      //   this.getSearch(val)
+      //   console.log(1111);
+      // }, 2000);
         //this.getSearch(val)
      
     },
