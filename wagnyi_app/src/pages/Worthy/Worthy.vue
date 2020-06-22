@@ -1,50 +1,82 @@
 <template>
   <div class="worthyContaiter">
     <Header :title="title"></Header>
-    <div class="worthyBannerContent">
-      <div class="worthyTop">
-        <img class="worthyBac" src="https://m.you.163.com/topic/index/img/topic_title_bg.2373a140.png" alt="">
-        <div class="worthyTitle">
-          <img src="https://m.you.163.com/topic/index/img/topic_logo.c2284970.png" alt="">
-          <div class="title">严选好物&nbsp;用心生活</div>
+    <div class="scrollContent" ref="scrollContent" style="height:calc(100vh - 200px);overflow:hidden
+">
+      <div >
+        <div class="worthyBannerContent">
+          <div class="worthyTop">
+            <img class="worthyBac" src="https://m.you.163.com/topic/index/img/topic_title_bg.2373a140.png" alt="">
+            <div class="worthyTitle">
+              <img src="https://m.you.163.com/topic/index/img/topic_logo.c2284970.png" alt="">
+              <div class="title">严选好物&nbsp;用心生活</div>
+            </div>
+          </div>
+        <div class="worthyBot" ref="worthyBot">
+          <div class="worthyContent">
+            <div class="wortItem" v-for="(item, index) in worthyData.navList" :key="index">
+              <img :src="item.picUrl" alt="">
+              <span class="title">{{item.mainTitle}}</span>
+              <span class="text">{{item.viceTitle}}</span>
+            </div>
+          </div>
+          <div class="dot" >  
+              <span 
+                v-for="(item, index) in worthyLen" :key="index"
+                :class='{active:index===WorIndex}'
+              ></span>
+            </div>
         </div>
       </div>
-      <div class="worthyBot" ref="worthyBot">
-        <div class="worthyContent">
-          <div class="wortItem" v-for="(item, index) in worthyData.navList" :key="index">
-            <img :src="item.picUrl" alt="">
-            <span class="title">{{item.mainTitle}}</span>
-            <span class="text">{{item.viceTitle}}</span>
-          </div>
-        </div>
-        <div class="dot" >  
-            <span 
-              v-for="(item, index) in worthyLen" :key="index"
-              :class='{active:index===WorIndex}'
-            ></span>
-          </div>
+      <!-- 瀑布流 -->
+      <div class="falls">
+        <waterfall :col='col' :data="imgsArr">
+          <template>
+            <div class="fallsItem" v-for="(item, index) in imgsArr" :key="index">
+              <img class="fallsImg" :src="item.picUrl" alt="">
+              <span class="title">{{item.title}}</span>
+              <div class="footer">
+                <img :src="item.avatar" alt="">
+                <span>{{item.nickname?item.nickname:'xxx'}}</span>
+              </div>
+              <div class="eyes">
+                <img class='eye' src="./eye.png" alt="">
+                <span>{{item.readCount>10000?Math.round(item.readCount/1000)+'k':item.readCount}}</span>
+              </div>
+            </div>
+          </template>
+        </waterfall>
+      </div>
       </div>
     </div>
-    <!-- 瀑布流 -->
-    <div> 123</div>
   </div>
 </template>
 
 <script>
+
 import Header from '../../components/Header/Header';
 import BScroll from 'better-scroll'
-import {reqWorthyNav} from '../../api/index';
+
+import {reqWorthyNav,reqWorthyDataInit,reqWorthyData} from '../../api/index';
+
 export default {
   name: 'Worthy',
   data() {
     return {
       title:'值得买',
       WorIndex:0,//小圆点下标
-      worthyData:{}
+      worthyData:{}, //值得买页面的数据
+      worthyDataInit:{},//瀑布流初始化数据
+      worthyDataGet:{},
+      col:2, //列数,
+      page:1,
     }
   },
   mounted() {
     this.getWorthyNav()
+    this.getWorthyInit()
+    //触底加载的数据
+    this.getWorthyData(this.page)
     let scrollWor=new BScroll(this.$refs.worthyBot,{
         scrollX:true,
         scrollY: false,
@@ -61,13 +93,40 @@ export default {
       let index=Math.abs(x/177)
       this.WorIndex=Math.ceil(index)
     })
+    //主题内容的滑动
+    let scrollContent=new BScroll(this.$refs.scrollContent,{
+      scrollY:true,
+      click:true,
+      pullUpLoad:{
+        threshold: -20
+      }
+    })
+    scrollContent.on('pullingUp',() => {
+      this.page+=1
+      this.imgsArr=this.imgsArr.concat(this.getImgsArr)
+      console.log(123);
+    })
   },
   methods: {
+    //值得买页的导航
     async getWorthyNav(){
       let result=await reqWorthyNav();
-      console.log(result);
       if (result.code==="200") {
         this.worthyData=result.data
+      }
+    },
+    //请求瀑布流初始化数据
+    async getWorthyInit(){
+      let result=await reqWorthyDataInit()
+      if (result.code==='200') {
+        this.worthyDataInit=result.data
+      }
+    },
+    //加载更多
+    async getWorthyData(page){
+      let result=await reqWorthyData({page})
+      if (result.code==='200') {
+        this.worthyDataGet=result.data.result
       }
     },
   },
@@ -75,6 +134,33 @@ export default {
     //计算长度
     worthyLen(){
       return  this.worthyData.navList && Math.ceil(this.worthyData.navList.length/2)-3
+    },
+    imgsArr:{
+     get(){
+        let imgsArr=[]
+        if(this.worthyDataInit.length>0){
+          this.worthyDataInit.forEach(topItem=>{  
+            topItem.topics.forEach(item=>{
+              imgsArr.push(item)
+            })
+          })
+        }
+      return  imgsArr
+     },
+     set(imgArr){
+       this.imgsArr=imgArr
+     }
+    },
+    getImgsArr(){
+      let getImgsArr=[]
+      if (this.worthyDataGet.length>0) {
+         this.worthyDataGet.forEach(topItem=>{  
+          topItem.topics.forEach(item=>{
+            getImgsArr.push(item)
+          })
+       })
+      }
+      return getImgsArr
     }
   },
   components:{
@@ -83,9 +169,11 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 .worthyContaiter
   background #eee
+  position relative
+  height calc(100vh - 100px)
   .worthyBannerContent
     height 680px
     padding-top 140px
@@ -166,5 +254,50 @@ export default {
           background #eee
           &.active
             background red
-
+  .falls        
+    width 100%
+    padding 0 20px
+    box-sizing border-box
+    background #eee
+    .fallsItem
+      width 326px
+      display flex
+      flex-direction column
+      background #fff
+      border-radius 20px
+      overflow hidden
+      border 1px solid #999
+      margin-top 20px
+      position relative
+      .fallsImg 
+       width 326px
+      .title 
+        font-size 26px
+        margin 10px 0
+        display -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow hidden
+        white-space pre-wrap    
+      .footer
+        height 80px
+        line-height 80px
+        display flex 
+        align-items center
+        padding 0 20px     
+        img 
+          height 60px
+          display inline
+          border-radius 50%
+        span 
+          font-size 24px
+          margin-left 20px
+      .eyes
+        position absolute
+        right 20px
+        bottom 15px
+        display flex
+        justify-content center
+        .eye
+          margin-top -10px
 </style>

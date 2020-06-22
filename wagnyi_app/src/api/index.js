@@ -18,4 +18,7 @@ export const reqLogin=(userName,password)=>ajax.post(`/api/login?username=${user
 export const reqSearchInit=()=>ajax.post('/host/xhr/search/init.json')
 //请求搜索数据
 export const reqSearch=(keyword)=>ajax.post('/host/xhr/search/searchAutoComplete.json',qs.stringify({keywordPrefix:keyword}))
-
+//请求瀑布流的初始数据
+export const reqWorthyDataInit=()=>ajax.get('/host/topic/v1/find/recManual.json')
+//触底加载
+export const reqWorthyData=({page,size=3})=>ajax.get(`/host/topic/v1/find/recAuto.json?page=${page}&size=${size}`)
